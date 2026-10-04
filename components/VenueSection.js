@@ -1,30 +1,42 @@
 "use client";
 
 import React from 'react';
-import { MapPin } from 'lucide-react';
+import { MapPin, Navigation, Train } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function VenueSection() {
   return (
-    <section className="py-20 px-6 bg-cream/50">
-      <div className="max-w-4xl mx-auto text-center space-y-12">
-        <div className="space-y-4">
-          <h2 className="font-script text-5xl text-gold">Find Us Here</h2>
+    <section className="py-20 px-6 bg-cream/50 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-40 h-40 bg-gold/5 rounded-full -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-60 h-60 bg-gold/5 rounded-full translate-x-1/3 translate-y-1/3" />
+
+      <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10">
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          className="space-y-4"
+        >
+          <div className="inline-block bg-gold/10 px-6 py-2 rounded-full border border-gold/20 mb-2">
+            <p className="font-heading text-sm uppercase tracking-[0.3em] text-gold font-bold">All Ceremonies at</p>
+          </div>
+          <h2 className="font-script text-5xl md:text-6xl text-gold">Find Us Here</h2>
           <p className="font-heading text-xl opacity-60 italic">We'd love to have you with us</p>
-        </div>
+        </motion.div>
 
         {/* Map Container */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="relative w-full h-[400px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
+          className="relative w-full h-[350px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
         >
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14006.840748281358!2d77.2773!3d28.6304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfcad675a6c3d%3A0xc4e5907409f6e695!2sLaxmi%20Nagar%2C%20Delhi!5e0!3m2!1sen!2sin!4v1713370000000!5m2!1sen!2sin" 
+            src="https://maps.google.com/maps?q=Regal+Resort,+Satbari,+Chhatarpur,+Delhi&cid=12373674793502048414&output=embed" 
             width="100%" 
             height="100%" 
-            style={{ border: 0, filter: 'grayscale(0.5) contrast(1.2) invert(0.05)' }} 
+            style={{ border: 0, filter: 'contrast(1.05)' }} 
             allowFullScreen="" 
             loading="lazy" 
             referrerPolicy="no-referrer-when-downgrade"
@@ -33,29 +45,59 @@ export default function VenueSection() {
 
         {/* Address Card */}
         <motion.div 
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          className="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center gap-4 border border-gold/10"
+          transition={{ delay: 0.2 }}
+          className="bg-white p-8 rounded-2xl shadow-xl border border-gold/10 space-y-6"
         >
-          <div className="bg-gold/10 p-4 rounded-full text-gold">
-            <MapPin size={32} />
+          <div className="flex flex-col items-center gap-4">
+            <motion.div
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="bg-gold/10 p-4 rounded-full text-gold"
+            >
+              <MapPin size={32} />
+            </motion.div>
+            <div className="space-y-2">
+              <h3 className="font-heading text-2xl md:text-3xl font-bold text-forest">Regal Resort</h3>
+              <p className="font-heading text-lg text-forest/70 max-w-sm mx-auto">
+                Satbari, Chhatarpur,<br />
+                New Delhi, Delhi
+              </p>
+            </div>
           </div>
-          <div className="space-y-2">
-            <h3 className="font-heading text-2xl font-bold">The Grand Palace</h3>
-            <p className="font-heading text-lg text-forest/70 max-w-sm mx-auto">
-              Main Venue Road, Laxmi Nagar,<br />
-              New Delhi, Delhi - 110092
+
+          {/* Nearest Metro Station Info */}
+          <div className="inline-flex items-center justify-center gap-3.5 bg-amber-50/80 px-6 py-3.5 rounded-2xl border border-amber-200/70 text-forest shadow-sm max-w-md mx-auto">
+            <div className="w-9 h-9 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-700 font-bold shrink-0">
+              <Train size={20} />
+            </div>
+            <div className="text-left">
+              <p className="font-heading text-xs uppercase tracking-wider font-bold text-amber-800">Nearest Metro Station</p>
+              <p className="font-heading text-sm md:text-base font-semibold text-forest">
+                Chhatarpur Metro Station <span className="text-amber-800/80 font-normal">(~4 km, Yellow Line 🟡)</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a 
+              href="https://www.google.com/maps?cid=12373674793502048414" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-8 py-3 bg-forest text-beige rounded-full font-heading font-bold hover:bg-gold hover:text-forest transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              <Navigation size={18} />
+              Get Directions
+            </a>
+          </div>
+
+          <div className="pt-4 border-t border-gold/10">
+            <p className="font-heading text-sm text-forest/50 italic">
+              All ceremonies — Haldi, Mehndi, Sangeet & Wedding — will be held at this venue
             </p>
           </div>
-          <a 
-            href="https://maps.app.goo.gl/..." 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="mt-4 px-8 py-3 bg-forest text-beige rounded-full font-heading font-bold hover:bg-gold hover:text-forest transition-colors shadow-lg"
-          >
-            Get Directions
-          </a>
         </motion.div>
       </div>
     </section>

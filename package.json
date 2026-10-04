@@ -11,12 +11,18 @@
   "dependencies": {
     "canvas-confetti": "^1.9.4",
     "framer-motion": "^12.38.0",
+    "gifwrap": "^0.10.1",
     "howler": "^2.2.4",
+    "jimp": "^1.6.1",
+    "jpeg-js": "^0.4.4",
     "lodash.throttle": "^4.1.1",
     "lucide-react": "^1.8.0",
     "next": "16.2.4",
+    "omggif": "^1.0.10",
+    "pngjs": "^7.0.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

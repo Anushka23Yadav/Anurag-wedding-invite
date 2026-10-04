@@ -1,8 +1,9 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { GaneshaIcon, FloralDivider, MandalaIcon } from './Icons';
+import { FloralDivider, MandalaIcon } from './Icons';
 
 export default function BlessingSection() {
   return (
@@ -15,6 +16,21 @@ export default function BlessingSection() {
         <MandalaIcon className="w-80 h-80 animate-spin-slow" />
       </div>
 
+      {/* Floating Petals */}
+      {[...Array(6)].map((_, i) => (
+        <div
+          key={i}
+          className="petal"
+          style={{
+            left: `${10 + i * 15}%`,
+            backgroundColor: ['#FF9933', '#C9A84C', '#F9E4D4', '#FFD700', '#FF6B6B', '#FFA07A'][i],
+            opacity: 0.4,
+            animationDuration: `${6 + i * 2}s`,
+            animationDelay: `${i * 1.5}s`,
+          }}
+        />
+      ))}
+
       <motion.div
         initial={{ y: 30, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -22,7 +38,32 @@ export default function BlessingSection() {
         transition={{ duration: 1 }}
         className="flex flex-col items-center gap-8"
       >
-        <GaneshaIcon className="w-24 h-24 text-gold" />
+        {/* Ganesh Ji Image */}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gold/30 shadow-2xl animate-glow"
+        >
+          <Image
+            src="/assets/ganesh.jpg"
+            alt="Shri Ganesh Ji"
+            fill
+            className="object-cover"
+            priority
+          />
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="font-heading text-lg text-saffron tracking-widest uppercase"
+        >
+          ॥ श्री गणेशाय नमः ॥
+        </motion.p>
         
         <div className="space-y-4">
           <p className="text-2xl font-heading text-gold italic gold-gradient">
@@ -38,31 +79,49 @@ export default function BlessingSection() {
         <div className="space-y-12">
           {/* Couple Names */}
           <div className="space-y-4">
-            <h1 className="font-script text-7xl md:text-9xl text-gold drop-shadow-sm">
+            <motion.h1
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="font-script text-7xl md:text-9xl text-gold drop-shadow-sm"
+            >
               Garima & Anurag
-            </h1>
+            </motion.h1>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             {/* Bride Side */}
-            <div className="space-y-2">
+            <motion.div
+              initial={{ x: -30, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="space-y-2"
+            >
               <p className="font-script text-3xl text-forest">Garima</p>
               <div className="h-[1px] w-12 bg-gold/30 mx-auto" />
               <p className="font-heading text-lg">Daughter of</p>
               <p className="font-heading font-bold text-xl uppercase tracking-tighter">
                  Mr. Pawan Khanka & Mrs. Arti Khanka
               </p>
-            </div>
+            </motion.div>
 
             {/* Groom Side */}
-            <div className="space-y-2">
+            <motion.div
+              initial={{ x: 30, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="space-y-2"
+            >
               <p className="font-script text-3xl text-forest">Anurag</p>
               <div className="h-[1px] w-12 bg-gold/30 mx-auto" />
               <p className="font-heading text-lg">Son of</p>
               <p className="font-heading font-bold text-xl uppercase tracking-tighter">
                 Mr. Satyaveer Sharma & Mrs. Anita Sharma
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
 

@@ -1,26 +1,71 @@
 "use strict";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WaxSeal } from './Icons';
 
 export default function Envelope({ onOpen }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAudioLoaded, setIsAudioLoaded] = useState(false);
+  const [showSunburst, setShowSunburst] = useState(false);
 
   const handleOpen = () => {
     setIsOpen(true);
-    // Play sound logic here or in parent
+    setShowSunburst(true);
+
+    // Delay before transitioning to the invitation
     setTimeout(() => {
       onOpen();
-    }, 2000);
+    }, 3000);
   };
+
+  // Generate sun rays
+  const sunRays = Array.from({ length: 16 }, (_, i) => ({
+    id: i,
+    rotation: (360 / 16) * i,
+    delay: i * 0.05,
+  }));
+
+  // Floating particles
+  const particles = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 8 + 4,
+    delay: Math.random() * 0.5,
+    duration: Math.random() * 2 + 1.5,
+  }));
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-beige overflow-hidden">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none" 
            style={{ backgroundImage: 'radial-gradient(#2D5016 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+
+      {/* Floating Sparkles in background */}
+      {!isOpen && (
+        <>
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`sparkle-${i}`}
+              className="absolute w-2 h-2 rounded-full bg-gold/40"
+              style={{
+                left: `${15 + Math.random() * 70}%`,
+                top: `${10 + Math.random() * 80}%`,
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [0, 1.5, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: i * 0.3,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </>
+      )}
 
       <motion.div 
         className="relative w-[90vw] max-w-[500px] h-[350px] preserve-3d"
@@ -36,6 +81,13 @@ export default function Envelope({ onOpen }) {
           >
             Tap to Reveal
           </motion.p>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="text-gold/60 text-2xl"
+          >
+            ↓
+          </motion.div>
         </div>
 
         {/* Envelope Body */}
@@ -79,6 +131,7 @@ export default function Envelope({ onOpen }) {
               <motion.div
                 exit={{ scale: 0, opacity: 0, rotate: 180 }}
                 transition={{ duration: 0.5 }}
+                className="animate-glow rounded-full"
               >
                 <WaxSeal className="w-16 h-16" onClick={handleOpen} />
               </motion.div>
@@ -91,13 +144,116 @@ export default function Envelope({ onOpen }) {
         </div>
       </motion.div>
 
-      {/* Cinematic Flash */}
-      <motion.div 
-        className="fixed inset-0 bg-white z-[60] pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={isOpen ? { opacity: [0, 1, 0] } : { opacity: 0 }}
-        transition={{ duration: 1.8, times: [0, 0.5, 1], ease: "easeInOut" }}
-      />
+      {/* ===== SUNBURST LIGHT ANIMATION ===== */}
+      <AnimatePresence>
+        {showSunburst && (
+          <>
+            {/* Golden radial burst */}
+            <motion.div
+              className="fixed inset-0 z-[60] pointer-events-none flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 3, times: [0, 0.2, 0.7, 1] }}
+            >
+              {/* Central sun glow */}
+              <motion.div
+                className="absolute rounded-full"
+                style={{
+                  background: 'radial-gradient(circle, #FFF9E6 0%, #FFD700 20%, #FF9933 40%, #C9A84C 60%, transparent 80%)',
+                  width: '200px',
+                  height: '200px',
+                }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ 
+                  scale: [0, 2, 8, 15],
+                  opacity: [0, 1, 0.8, 0],
+                }}
+                transition={{ duration: 2.5, ease: "easeOut" }}
+              />
+
+              {/* Sun rays */}
+              {sunRays.map((ray) => (
+                <motion.div
+                  key={ray.id}
+                  className="absolute"
+                  style={{
+                    width: '4px',
+                    height: '300px',
+                    background: 'linear-gradient(to top, transparent, rgba(255, 215, 0, 0.8), transparent)',
+                    transformOrigin: 'bottom center',
+                    transform: `rotate(${ray.rotation}deg)`,
+                  }}
+                  initial={{ scaleY: 0, opacity: 0 }}
+                  animate={{ 
+                    scaleY: [0, 1, 3],
+                    opacity: [0, 0.9, 0],
+                  }}
+                  transition={{ 
+                    duration: 2.2, 
+                    delay: ray.delay,
+                    ease: "easeOut" 
+                  }}
+                />
+              ))}
+
+              {/* Floating golden particles */}
+              {particles.map((p) => (
+                <motion.div
+                  key={`p-${p.id}`}
+                  className="absolute rounded-full bg-gold"
+                  style={{
+                    width: p.size,
+                    height: p.size,
+                    left: `${p.x}%`,
+                    top: `${p.y}%`,
+                  }}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{
+                    opacity: [0, 1, 0],
+                    scale: [0, 1.5, 0],
+                    y: [0, -50 - Math.random() * 100],
+                  }}
+                  transition={{
+                    duration: p.duration,
+                    delay: p.delay + 0.3,
+                    ease: "easeOut",
+                  }}
+                />
+              ))}
+            </motion.div>
+
+            {/* Full screen warm golden wash */}
+            <motion.div
+              className="fixed inset-0 z-[61] pointer-events-none"
+              style={{
+                background: 'radial-gradient(circle at center, rgba(255, 249, 230, 0.95) 0%, rgba(255, 215, 0, 0.6) 30%, rgba(255, 153, 51, 0.4) 60%, rgba(250, 243, 224, 0.9) 100%)',
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 3, times: [0, 0.15, 0.6, 1], ease: "easeInOut" }}
+            />
+
+            {/* Om/Shubh overlay text */}
+            <motion.div
+              className="fixed inset-0 z-[62] pointer-events-none flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 3, times: [0, 0.3, 0.7, 1] }}
+            >
+              <motion.div
+                className="text-center"
+                initial={{ scale: 0.5 }}
+                animate={{ scale: [0.5, 1.2, 1] }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+              >
+                <p className="font-script text-6xl md:text-8xl text-gold drop-shadow-2xl" style={{ textShadow: '0 0 40px rgba(201, 168, 76, 0.6)' }}>
+                  शुभ विवाह
+                </p>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

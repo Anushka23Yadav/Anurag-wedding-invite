@@ -6,6 +6,9 @@
   --color-forest: #2D5016;
   --color-cream: #FFF8F0;
   --color-blush: #F9E4D4;
+  --color-saffron: #FF9933;
+  --color-deep-red: #8B1A1A;
+  --color-maroon: #800020;
   
   --font-cormorant: "Cormorant Garamond", serif;
   --font-vibes: "Great Vibes", cursive;
@@ -38,6 +41,8 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* ===== ANIMATIONS ===== */
+
 @keyframes pulse-soft {
   0% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.02); opacity: 0.9; }
@@ -46,4 +51,185 @@ body {
 
 .animate-pulse-soft {
   animation: pulse-soft 2s infinite ease-in-out;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.3), 0 0 40px rgba(201, 168, 76, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(201, 168, 76, 0.5), 0 0 60px rgba(201, 168, 76, 0.2); }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sunburst {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.1) rotate(0deg);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.5) rotate(90deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(3) rotate(180deg);
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(5) rotate(360deg);
+  }
+}
+
+@keyframes sunrays {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+@keyframes diyas-flicker {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  25% { opacity: 0.8; transform: scaleY(1.1); }
+  50% { opacity: 1; transform: scaleY(0.9); }
+  75% { opacity: 0.9; transform: scaleY(1.05); }
+}
+
+.animate-diya {
+  animation: diyas-flicker 1.5s ease-in-out infinite;
+}
+
+/* Decorative flower petals */
+@keyframes petal-fall {
+  0% { 
+    transform: translateY(-10vh) rotate(0deg) translateX(0px); 
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(110vh) rotate(720deg) translateX(100px); 
+    opacity: 0.3;
+  }
+}
+
+.petal {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50% 0 50% 0;
+  pointer-events: none;
+  animation: petal-fall linear infinite;
+}
+
+/* Sound button pulse */
+@keyframes sound-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(201, 168, 76, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+}
+
+.sound-btn-playing {
+  animation: sound-pulse 1.5s ease-out infinite;
+}
+
+/* Card hover effects */
+.ceremony-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.ceremony-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(201, 168, 76, 0.3);
+}
+
+/* Carousel styles */
+.carousel-container {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel-slide {
+  scroll-snap-align: center;
+  flex-shrink: 0;
+}
+
+/* Custom scrollbar hide */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Wedding Schedule Timeline */
+.timeline-line {
+  background: linear-gradient(to bottom, transparent, #C9A84C, transparent);
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .ceremony-card {
+    margin: 0 -8px;
+  }
 }

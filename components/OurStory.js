@@ -50,7 +50,7 @@ export default function OurStory() {
             </div>
             <h2 className="font-script text-5xl md:text-6xl text-gold">Our Story</h2>
             <p className="font-heading text-xl opacity-60 italic max-w-lg mx-auto">
-              A glimpse into the beautiful moments Garima & Anurag have shared together
+              A glimpse into the beautiful moments Anurag & Garima have shared together
             </p>
           </div>
         </motion.div>

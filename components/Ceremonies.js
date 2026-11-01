@@ -241,7 +241,7 @@ export default function Ceremonies() {
               >
                 शुभ विवाह
               </motion.h3>
-              <p className="font-heading text-2xl md:text-3xl tracking-[0.2em] font-light">Garima & Anurag</p>
+              <p className="font-heading text-2xl md:text-3xl tracking-[0.2em] font-light">Anurag & Garima</p>
               <div className="flex items-center justify-center gap-3">
                 <div className="w-12 h-[1px] bg-gold/60" />
                 <Heart size={16} className="text-gold" fill="currentColor" />

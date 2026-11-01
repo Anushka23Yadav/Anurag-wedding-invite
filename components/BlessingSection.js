@@ -96,7 +96,7 @@ export default function BlessingSection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            {/* Bride Side */}
+            {/* Groom Side */}
             <motion.div
               initial={{ x: -30, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -104,15 +104,15 @@ export default function BlessingSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-2"
             >
-              <p className="font-alex text-4xl md:text-5xl text-forest">{couple.bride.name}</p>
+              <p className="font-alex text-4xl md:text-5xl text-forest">{couple.groom.name}</p>
               <div className="h-[1px] w-12 bg-gold/30 mx-auto" />
-              <p className="font-heading text-lg">Daughter of</p>
+              <p className="font-heading text-lg">Son of</p>
               <p className="font-heading font-bold text-xl uppercase tracking-tighter">
-                {couple.bride.parents}
+                {couple.groom.parents}
               </p>
             </motion.div>
 
-            {/* Groom Side */}
+            {/* Bride Side */}
             <motion.div
               initial={{ x: 30, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -120,11 +120,11 @@ export default function BlessingSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="space-y-2"
             >
-              <p className="font-alex text-4xl md:text-5xl text-forest">{couple.groom.name}</p>
+              <p className="font-alex text-4xl md:text-5xl text-forest">{couple.bride.name}</p>
               <div className="h-[1px] w-12 bg-gold/30 mx-auto" />
-              <p className="font-heading text-lg">Son of</p>
+              <p className="font-heading text-lg">Daughter of</p>
               <p className="font-heading font-bold text-xl uppercase tracking-tighter">
-                {couple.groom.parents}
+                {couple.bride.parents}
               </p>
             </motion.div>
           </div>

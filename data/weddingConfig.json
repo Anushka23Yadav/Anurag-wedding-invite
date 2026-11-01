@@ -1,12 +1,14 @@
 {
   "couple": {
-    "bride": {
-      "name": "Garima",
-      "parents": "Mr. Pawan Khanka & Mrs. Arti Khanka"
-    },
     "groom": {
       "name": "Anurag",
+      "grandparents": "Sw. Rajkishor Sharma & Sw. Imarti Sharma",
       "parents": "Mr. Satyaveer Sharma & Mrs. Anita Sharma"
+    },
+    "bride": {
+      "name": "Garima",
+      "grandparents": "Sw. Gambhir Singh Khanka & Sw. Hema Khanka",
+      "parents": "Sw. Pawan Singh Khanka & Arti Khanka"
     },
     "coupleTitle": "Anurag & Garima",
     "blessingHeadline": "॥ श्री गणेशाय नमः ॥",

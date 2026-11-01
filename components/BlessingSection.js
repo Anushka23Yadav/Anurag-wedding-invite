@@ -81,35 +81,64 @@ export default function BlessingSection() {
 
         <FloralDivider className="my-8" />
 
-        <div className="space-y-12">
+        <div className="space-y-6 md:space-y-8">
+          {/* Couple Monogram Crest */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="relative w-36 h-36 md:w-48 md:h-48 mx-auto mb-2 drop-shadow-md"
+          >
+            <Image
+              src="/assets/anurima-logo.png"
+              alt="Anurima Monogram"
+              fill
+              className="object-contain"
+              priority
+            />
+          </motion.div>
+
           {/* Couple Names */}
-          <div className="space-y-4">
+          <div className="space-y-4 pt-2 md:pt-4">
             <motion.h1
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              className="font-alex text-7xl md:text-9xl text-gold drop-shadow-sm"
+              className="font-alex text-7xl md:text-9xl text-gold drop-shadow-sm leading-tight md:leading-normal"
             >
               {couple.coupleTitle}
             </motion.h1>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
             {/* Groom Side */}
             <motion.div
               initial={{ x: -30, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-2"
+              className="bg-white/60 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-gold/20 shadow-md space-y-4"
             >
-              <p className="font-alex text-4xl md:text-5xl text-forest">{couple.groom.name}</p>
-              <div className="h-[1px] w-12 bg-gold/30 mx-auto" />
-              <p className="font-heading text-lg">Son of</p>
-              <p className="font-heading font-bold text-xl uppercase tracking-tighter">
-                {couple.groom.parents}
-              </p>
+              <p className="font-alex text-5xl md:text-6xl text-forest">{couple.groom.name}</p>
+              <div className="h-[1px] w-16 bg-gold/30 mx-auto" />
+
+              <div className="space-y-1">
+                <p className="font-heading text-xs uppercase tracking-[0.2em] text-gold font-bold">Grandson of</p>
+                <p className="font-heading font-semibold text-lg md:text-xl text-forest/90">
+                  {couple.groom.grandparents}
+                </p>
+              </div>
+
+              <div className="h-[1px] w-12 bg-gold/20 mx-auto" />
+
+              <div className="space-y-1">
+                <p className="font-heading text-xs uppercase tracking-[0.2em] text-gold font-bold">Son of</p>
+                <p className="font-heading font-bold text-xl uppercase tracking-tighter text-forest">
+                  {couple.groom.parents}
+                </p>
+              </div>
             </motion.div>
 
             {/* Bride Side */}
@@ -118,14 +147,26 @@ export default function BlessingSection() {
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="space-y-2"
+              className="bg-white/60 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-gold/20 shadow-md space-y-4"
             >
-              <p className="font-alex text-4xl md:text-5xl text-forest">{couple.bride.name}</p>
-              <div className="h-[1px] w-12 bg-gold/30 mx-auto" />
-              <p className="font-heading text-lg">Daughter of</p>
-              <p className="font-heading font-bold text-xl uppercase tracking-tighter">
-                {couple.bride.parents}
-              </p>
+              <p className="font-alex text-5xl md:text-6xl text-forest">{couple.bride.name}</p>
+              <div className="h-[1px] w-16 bg-gold/30 mx-auto" />
+
+              <div className="space-y-1">
+                <p className="font-heading text-xs uppercase tracking-[0.2em] text-gold font-bold">Granddaughter of</p>
+                <p className="font-heading font-semibold text-lg md:text-xl text-forest/90">
+                  {couple.bride.grandparents}
+                </p>
+              </div>
+
+              <div className="h-[1px] w-12 bg-gold/20 mx-auto" />
+
+              <div className="space-y-1">
+                <p className="font-heading text-xs uppercase tracking-[0.2em] text-gold font-bold">Daughter of</p>
+                <p className="font-heading font-bold text-xl uppercase tracking-tighter text-forest">
+                  {couple.bride.parents}
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>

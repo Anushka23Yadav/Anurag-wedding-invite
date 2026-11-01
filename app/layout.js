@@ -64,16 +64,19 @@ async function getSiteUrl() {
 
 export async function generateMetadata() {
   const siteUrl = await getSiteUrl();
+  const coupleNames = `${weddingConfig.couple.groom.name} & ${weddingConfig.couple.bride.name}`;
+  const weddingDate = weddingConfig.dates.weddingDateText;
+  const venueText = `${weddingConfig.venue.name}, ${weddingConfig.venue.addressLine1} ${weddingConfig.venue.addressLine2}`;
 
   return {
     metadataBase: new URL(siteUrl),
-    title: `Wedding of ${weddingConfig.couple.coupleTitle} | ${weddingConfig.dates.weddingDateText}`,
-    description: `You are cordially invited to the wedding celebration of ${weddingConfig.couple.coupleTitle} on ${weddingConfig.dates.weddingDateText} at ${weddingConfig.venue.name}, ${weddingConfig.venue.addressLine1} ${weddingConfig.venue.addressLine2}.`,
+    title: `Wedding of ${coupleNames} | ${weddingDate}`,
+    description: `You are cordially invited to the wedding celebration of ${coupleNames} on ${weddingDate} at ${venueText}.`,
     openGraph: {
-      title: `Wedding of ${weddingConfig.couple.coupleTitle} | ${weddingConfig.dates.weddingDateText}`,
-      description: `You are cordially invited to the wedding celebration of ${weddingConfig.couple.coupleTitle} on ${weddingConfig.dates.weddingDateText} at ${weddingConfig.venue.name}, ${weddingConfig.venue.addressLine1} ${weddingConfig.venue.addressLine2}.`,
+      title: `Wedding of ${coupleNames} | ${weddingDate}`,
+      description: `You are cordially invited to the wedding celebration of ${coupleNames} on ${weddingDate} at ${venueText}.`,
       url: siteUrl,
-      siteName: `Wedding of ${weddingConfig.couple.coupleTitle}`,
+      siteName: `Wedding of ${coupleNames}`,
       type: "website",
       locale: "en_IN",
       images: [
@@ -83,14 +86,14 @@ export async function generateMetadata() {
           width: 1200,
           height: 630,
           type: "image/jpeg",
-          alt: `${weddingConfig.couple.coupleTitle} Wedding Invitation`,
+          alt: `${coupleNames} Wedding Invitation`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `Wedding of ${weddingConfig.couple.coupleTitle} | ${weddingConfig.dates.weddingDateText}`,
-      description: `You are cordially invited to the wedding celebration of ${weddingConfig.couple.coupleTitle}.`,
+      title: `Wedding of ${coupleNames} | ${weddingDate}`,
+      description: `You are cordially invited to the wedding celebration of ${coupleNames}.`,
       images: [`${siteUrl}/assets/og-image.jpg`],
     },
   };

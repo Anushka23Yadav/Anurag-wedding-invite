@@ -11,7 +11,7 @@ export default function BlessingSection() {
   const { couple, assets } = weddingConfig;
 
   return (
-    <section className="relative py-20 px-6 text-center space-y-12 overflow-hidden">
+    <section className="relative pt-4 md:pt-6 pb-16 px-6 text-center space-y-10 md:space-y-12 overflow-hidden">
       {/* Background Mandalas */}
       <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 opacity-5">
         <MandalaIcon className="w-80 h-80 animate-spin-slow" />
@@ -79,7 +79,28 @@ export default function BlessingSection() {
           </p>
         </div>
 
-        <FloralDivider className="my-8" />
+        <FloralDivider className="my-6 md:my-8" />
+
+        {/* Invitation Announcement from The Sharma Family */}
+        <motion.div
+          initial={{ y: 25, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9 }}
+          className="space-y-4 max-w-2xl mx-auto px-4"
+        >
+          <p className="font-heading text-base md:text-xl text-forest/75 italic leading-relaxed">
+            {couple.invitationOpening || "With the divine blessings and the love of our family,"}
+          </p>
+          <div className="space-y-2 pt-1">
+            <h2 className="font-heading text-2xl md:text-4xl font-bold text-gold tracking-wider uppercase">
+              {couple.invitingFamily || "The Sharma Family"}
+            </h2>
+            <p className="font-heading text-xs md:text-sm text-forest/70 tracking-[0.25em] uppercase font-medium">
+              {couple.invitationCall || "cordially invites you to grace the auspicious occasion of the wedding of"}
+            </p>
+          </div>
+        </motion.div>
 
         <div className="space-y-6 md:space-y-8">
           {/* Couple Monogram Crest */}
@@ -100,16 +121,24 @@ export default function BlessingSection() {
           </motion.div>
 
           {/* Couple Names */}
-          <div className="space-y-4 pt-2 md:pt-4">
-            <motion.h1
+          <div className="pt-2 md:pt-4">
+            <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              className="font-alex text-7xl md:text-9xl text-gold drop-shadow-sm leading-tight md:leading-normal"
+              className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 md:gap-6"
             >
-              {couple.coupleTitle}
-            </motion.h1>
+              <h1 className="font-alex text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-gold drop-shadow-sm">
+                {couple.groom.name}
+              </h1>
+              <span className="font-heading text-lg sm:text-xl md:text-2xl text-forest/75 italic font-medium tracking-widest my-1 sm:my-0">
+                — weds —
+              </span>
+              <h1 className="font-alex text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-gold drop-shadow-sm">
+                {couple.bride.name}
+              </h1>
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">

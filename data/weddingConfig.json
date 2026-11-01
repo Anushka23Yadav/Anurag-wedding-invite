@@ -1,8 +1,11 @@
 {
   "couple": {
+    "invitationOpening": "With the divine blessings and the love of our family,",
+    "invitingFamily": "The Sharma Family",
+    "invitationCall": "cordially invites you to grace the auspicious occasion of the wedding of",
     "groom": {
       "name": "Anurag",
-      "grandparents": "Sw. Rajkishor Sharma & Sw. Imarti Sharma",
+      "grandparents": "Sw. Rajkishor Sharma & Imarti Sharma",
       "parents": "Mr. Satyaveer Sharma & Mrs. Anita Sharma"
     },
     "bride": {
@@ -10,7 +13,7 @@
       "grandparents": "Sw. Gambhir Singh Khanka & Sw. Hema Khanka",
       "parents": "Sw. Pawan Singh Khanka & Arti Khanka"
     },
-    "coupleTitle": "Anurag & Garima",
+    "coupleTitle": "Anurag weds Garima",
     "blessingHeadline": "॥ श्री गणेशाय नमः ॥",
     "shloka": "धर्मेच अर्थेच कामेच नाति चरामि",
     "shlokaTranslation": "In Dharma, Wealth, and Love — I shall not forsake you",

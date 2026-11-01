@@ -5,7 +5,11 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FloralDivider, MandalaIcon } from './Icons';
 
+import weddingConfig from '../data/weddingConfig.json';
+
 export default function BlessingSection() {
+  const { couple, assets } = weddingConfig;
+
   return (
     <section className="relative py-20 px-6 text-center space-y-12 overflow-hidden">
       {/* Background Mandalas */}
@@ -47,9 +51,10 @@ export default function BlessingSection() {
           className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gold/30 shadow-2xl animate-glow"
         >
           <Image
-            src="/assets/ganesh.jpg"
+            src={assets.ganeshImage}
             alt="Shri Ganesh Ji"
             fill
+            sizes="160px"
             className="object-cover"
             priority
           />
@@ -62,15 +67,15 @@ export default function BlessingSection() {
           transition={{ delay: 0.3 }}
           className="font-heading text-lg text-saffron tracking-widest uppercase"
         >
-          ॥ श्री गणेशाय नमः ॥
+          {couple.blessingHeadline}
         </motion.p>
         
         <div className="space-y-4">
           <p className="text-2xl font-heading text-gold italic gold-gradient">
-            "धर्मेच अर्थेच कामेच नाति चरामि"
+            "{couple.shloka}"
           </p>
           <p className="text-sm tracking-widest text-forest/60 uppercase">
-            In Dharma, Wealth, and Love — I shall not forsake you
+            {couple.shlokaTranslation}
           </p>
         </div>
 
@@ -84,9 +89,9 @@ export default function BlessingSection() {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              className="font-script text-7xl md:text-9xl text-gold drop-shadow-sm"
+              className="font-alex text-7xl md:text-9xl text-gold drop-shadow-sm"
             >
-              Garima & Anurag
+              {couple.coupleTitle}
             </motion.h1>
           </div>
 
@@ -99,11 +104,11 @@ export default function BlessingSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-2"
             >
-              <p className="font-script text-3xl text-forest">Garima</p>
+              <p className="font-alex text-4xl md:text-5xl text-forest">{couple.bride.name}</p>
               <div className="h-[1px] w-12 bg-gold/30 mx-auto" />
               <p className="font-heading text-lg">Daughter of</p>
               <p className="font-heading font-bold text-xl uppercase tracking-tighter">
-                 Mr. Pawan Khanka & Mrs. Arti Khanka
+                {couple.bride.parents}
               </p>
             </motion.div>
 
@@ -115,11 +120,11 @@ export default function BlessingSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="space-y-2"
             >
-              <p className="font-script text-3xl text-forest">Anurag</p>
+              <p className="font-alex text-4xl md:text-5xl text-forest">{couple.groom.name}</p>
               <div className="h-[1px] w-12 bg-gold/30 mx-auto" />
               <p className="font-heading text-lg">Son of</p>
               <p className="font-heading font-bold text-xl uppercase tracking-tighter">
-                Mr. Satyaveer Sharma & Mrs. Anita Sharma
+                {couple.groom.parents}
               </p>
             </motion.div>
           </div>

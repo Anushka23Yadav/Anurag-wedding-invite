@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import weddingConfig from '../data/weddingConfig.json';
 
 export default function Countdown() {
-  const targetDate = new Date('2026-11-26T00:00:00');
+  const targetDate = new Date(weddingConfig.dates.targetIsoDate);
   const [timeLeft, setTimeLeft] = useState({
     days: 0, hours: 0, minutes: 0, seconds: 0
   });

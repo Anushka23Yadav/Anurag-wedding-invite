@@ -39,14 +39,16 @@ export const LotusIcon = ({ className }) => (
 );
 
 export const WaxSeal = ({ className, onClick }) => (
-  <div 
-    className={`relative cursor-pointer group interaction-none ${className}`}
+  <button 
+    type="button"
+    className={`relative cursor-pointer group active:scale-95 touch-manipulation select-none ${className}`}
     onClick={onClick}
+    aria-label="Tap to open invitation"
   >
     <div className="absolute inset-0 bg-red-700 rounded-full shadow-lg transform group-hover:scale-110 transition-transform" />
     <div className="absolute inset-2 border-2 border-gold/30 rounded-full" />
-    <div className="absolute inset-0 flex items-center justify-center text-gold font-script text-xl pt-1">
+    <div className="absolute inset-0 flex items-center justify-center text-gold font-script text-2xl pt-1 font-bold pointer-events-none">
       ॐ
     </div>
-  </div>
+  </button>
 );

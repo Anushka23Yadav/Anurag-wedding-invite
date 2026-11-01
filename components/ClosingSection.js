@@ -4,8 +4,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { LotusIcon, FloralDivider, MandalaIcon } from './Icons';
 import { Heart, Sparkles } from 'lucide-react';
+import weddingConfig from '../data/weddingConfig.json';
 
 export default function ClosingSection() {
+  const { couple, dates } = weddingConfig;
+
   return (
     <section className="py-24 md:py-32 px-6 bg-beige border-t-4 border-gold/10 overflow-hidden relative">
       {/* Decorative Rotating Mandala Background */}
@@ -38,15 +41,15 @@ export default function ClosingSection() {
           className="flex flex-col items-center gap-6"
         >
           <LotusIcon className="w-16 h-16 md:w-20 md:h-20 text-gold animate-pulse-soft" />
-          
+
           <h2 className="font-script text-4xl md:text-5xl lg:text-6xl text-forest leading-tight max-w-2xl">
-            "With joy in our hearts, we invite you to be a part of this beautiful beginning."
+            "{couple.closingQuote}"
           </h2>
-          
+
           <FloralDivider className="w-full max-w-md" />
-          
+
           <p className="font-heading text-xl md:text-2xl text-forest/70 max-w-xl italic">
-            Your presence will make our celebration complete. Please do grace us with your blessings.
+            {couple.closingMessage}
           </p>
 
           {/* Decorative Diyas */}
@@ -69,7 +72,7 @@ export default function ClosingSection() {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -82,12 +85,12 @@ export default function ClosingSection() {
             <div className="w-16 h-[1px] bg-gold/30" />
           </div>
           <p className="font-heading text-sm uppercase tracking-[0.5em] text-gold font-bold">With Love & Blessings</p>
-          <h3 className="font-script text-5xl md:text-6xl text-forest">Garima & Anurag</h3>
-          <p className="font-heading text-lg text-forest/50 italic">26th November 2026</p>
+          <h3 className="font-alex text-5xl md:text-6xl text-forest">{couple.coupleTitle}</h3>
+          {/* <p className="font-heading text-lg text-forest/50 italic">{dates.weddingDateText}</p> */}
         </motion.div>
-        
+
         <div className="pt-16 md:pt-20 opacity-30 font-heading text-xs tracking-widest text-forest">
-          <p>Handcrafted with ❤️ for Garima & Anurag • 2026</p>
+          <p>Handcrafted with ❤️ for {couple.coupleTitle} • 2026</p>
         </div>
       </div>
     </section>

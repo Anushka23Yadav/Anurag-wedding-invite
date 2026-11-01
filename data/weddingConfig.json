@@ -1,0 +1,136 @@
+{
+  "couple": {
+    "bride": {
+      "name": "Garima",
+      "parents": "Mr. Pawan Khanka & Mrs. Arti Khanka"
+    },
+    "groom": {
+      "name": "Anurag",
+      "parents": "Mr. Satyaveer Sharma & Mrs. Anita Sharma"
+    },
+    "coupleTitle": "Garima & Anurag",
+    "blessingHeadline": "॥ श्री गणेशाय नमः ॥",
+    "shloka": "धर्मेच अर्थेच कामेच नाति चरामि",
+    "shlokaTranslation": "In Dharma, Wealth, and Love — I shall not forsake you",
+    "closingQuote": "With joy in our hearts, we invite you to be a part of this beautiful beginning.",
+    "closingMessage": "Your presence will make our celebration complete. Please do grace us with your blessings."
+  },
+  "dates": {
+    "weddingDateText": "26th November 2026",
+    "weddingDayOfWeek": "Thursday",
+    "targetIsoDate": "2026-11-26T12:00:00",
+    "scratchDay": "26",
+    "scratchMonth": "November",
+    "scratchYear": "2026"
+  },
+  "venue": {
+    "name": "Regal Resort",
+    "addressLine1": "Satbari, Chhatarpur,",
+    "addressLine2": "New Delhi, Delhi",
+    "fullAddress": "Regal Resort, Satbari, Chhatarpur, Delhi",
+    "googleMapsCid": "12373674793502048414",
+    "googleMapsUrl": "https://www.google.com/maps?cid=12373674793502048414",
+    "embedIframeUrl": "https://maps.google.com/maps?q=Regal+Resort,+Satbari,+Chhatarpur,+Delhi&cid=12373674793502048414&output=embed",
+    "nearestMetro": {
+      "stationName": "Chhatarpur Metro Station",
+      "distance": "~4 km",
+      "line": "Yellow Line 🟡"
+    }
+  },
+  "assets": {
+    "ganeshImage": "/assets/ganesh.jpg",
+    "audioSong": "/assets/song.mp3",
+    "ogImage": "/assets/og-image.jpg"
+  },
+  "ceremonies": {
+    "day1": {
+      "title": "Pre-Wedding Celebrations",
+      "dateText": "25th November 2026 — Wednesday",
+      "events": [
+        {
+          "id": "haldi",
+          "title": "Haldi & Mehndi",
+          "date": "25th November 2026",
+          "time": "1:00 PM Onwards",
+          "note": "No dress code restrictions — Yellow preferred for the Haldi vibes 💛",
+          "venue": "Regal Resort, Satbari, Chhatarpur, Delhi",
+          "image": "/assets/haldi-ceremony.gif",
+          "bgGradient": "bg-gradient-to-br from-[#FFF9C4] via-[#FFF3B0] to-[#FFE082]",
+          "accentColor": "bg-amber-500",
+          "icon": "Sparkles"
+        },
+        {
+          "id": "sangeet",
+          "title": "Sangeet Night",
+          "date": "25th November 2026",
+          "time": "7:00 PM Onwards",
+          "note": "No dress code restrictions — Come dressed to dance! 💃🕺",
+          "venue": "Regal Resort, Satbari, Chhatarpur, Delhi",
+          "image": "/assets/sangeet-ceremony.gif",
+          "bgGradient": "bg-gradient-to-br from-[#E8F5E9] via-[#C8E6C9] to-[#A5D6A7]",
+          "accentColor": "bg-emerald-600",
+          "icon": "Music"
+        }
+      ]
+    },
+    "weddingDay": {
+      "title": "The Grand Celebration",
+      "dateText": "26th November 2026 — Thursday",
+      "schedule": [
+        { "time": "12:00 PM", "event": "Baraat Arrival", "description": "The groom's grand procession with music & dance" },
+        { "time": "1:00 PM", "event": "Lunch", "description": "Festive celebration lunch for family & guests" },
+        { "time": "3:00 PM", "event": "Var Mala", "description": "Exchange of garlands — the joyful union begins" },
+        { "time": "4:00 PM", "event": "Wedding Ceremony", "description": "Sacred pheras around the holy fire" }
+      ]
+    }
+  },
+  "ourStory": {
+    "sectionTitle": "Our Journey",
+    "heading": "Our Story",
+    "description": "A glimpse into the beautiful moments Garima & Anurag have shared together",
+    "photos": [
+      { 
+        "id": 5, 
+        "image": "/assets/story/5.jpeg", 
+        "tag": "Pre-Engagement",
+        "caption": "Where our beautiful journey began — exploring the world together 🌿❤️" 
+      },
+      { 
+        "id": 6, 
+        "image": "/assets/story/6.jpeg", 
+        "tag": "Pre-Engagement",
+        "caption": "Finding warmth, laughter & magic in every season ❄️💑" 
+      },
+      { 
+        "id": 7, 
+        "image": "/assets/story/7.jpeg", 
+        "tag": "Pre-Engagement",
+        "caption": "Cherishing life's sweetest little moments side by side 🐾🌸" 
+      },
+      { 
+        "id": 1, 
+        "image": "/assets/story/1.JPG", 
+        "tag": "The Engagement",
+        "caption": "A promise of a lifetime — exchanging rings on our engagement day 💍✨" 
+      },
+      { 
+        "id": 2, 
+        "image": "/assets/story/2.JPG", 
+        "tag": "The Engagement",
+        "caption": "Officially engaged — smiling into our forever! 💫💖" 
+      },
+      { 
+        "id": 3, 
+        "image": "/assets/story/3.JPG", 
+        "tag": "The Engagement",
+        "caption": "Two hearts, one soul, wrapped in eternal love ❤️🌹" 
+      },
+      { 
+        "id": 4, 
+        "image": "/assets/story/4.JPG", 
+        "tag": "The Engagement",
+        "caption": "Celebrations, cheers & counting down to our wedding day! 🥂✨" 
+      }
+    ]
+  }
+}

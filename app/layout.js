@@ -1,4 +1,5 @@
-import { Cormorant_Garamond, Great_Vibes, Lato } from "next/font/google";
+import { Cormorant_Garamond, Great_Vibes, Alex_Brush, Lato } from "next/font/google";
+import weddingConfig from "@/data/weddingConfig.json";
 import "./globals.css";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -13,50 +14,93 @@ const greatVibes = Great_Vibes({
   weight: ["400"],
 });
 
+const alexBrush = Alex_Brush({
+  variable: "--font-alex",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 const lato = Lato({
   variable: "--font-lato",
   subsets: ["latin"],
   weight: ["100", "300", "400", "700", "900"],
 });
 
-export const metadata = {
-  title: "Wedding of Garima & Anurag | Nov 26, 2026",
-  description:
-    "You are cordially invited to the wedding celebration of Garima & Anurag on 26th November 2026 at Regal Resort, Satbari, Chhatarpur, Delhi.",
-  openGraph: {
-    title: "Wedding of Garima & Anurag | Nov 26, 2026",
-    description:
-      "You are cordially invited to the wedding celebration of Garima & Anurag on 26th November 2026 at Regal Resort, Satbari, Chhatarpur, Delhi.",
-    type: "website",
-    images: [
-      {
-        url: "/assets/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Garima & Anurag Wedding Invitation",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Wedding of Garima & Anurag | Nov 26, 2026",
-    description:
-      "You are cordially invited to the wedding celebration of Garima & Anurag.",
-    images: ["/assets/og-image.jpg"],
-  },
-};
+import { headers } from "next/headers";
+
+async function getSiteUrl() {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
+  }
+
+  try {
+    const headersList = await headers();
+    const forwardedHost = headersList.get("x-forwarded-host");
+    const forwardedProto = headersList.get("x-forwarded-proto") || "https";
+
+    // If forwarded via ngrok or reverse proxy (e.g. xyz.ngrok-free.app)
+    if (forwardedHost && !forwardedHost.includes("localhost") && !forwardedHost.startsWith("127.0.0.1")) {
+      return `${forwardedProto}://${forwardedHost}`;
+    }
+
+    const host = headersList.get("host");
+    // If incoming host is an actual domain (e.g. deployed on Vercel or custom domain)
+    if (host && !host.includes("localhost") && !host.startsWith("127.0.0.1")) {
+      return `${forwardedProto}://${host}`;
+    }
+  } catch (e) {
+    // During static build or prerendering, headers() might throw or be empty
+  }
+
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  return "https://anurima-wedding-invite.vercel.app";
+}
+
+export async function generateMetadata() {
+  const siteUrl = await getSiteUrl();
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: `Wedding of ${weddingConfig.couple.coupleTitle} | ${weddingConfig.dates.weddingDateText}`,
+    description: `You are cordially invited to the wedding celebration of ${weddingConfig.couple.coupleTitle} on ${weddingConfig.dates.weddingDateText} at ${weddingConfig.venue.name}, ${weddingConfig.venue.addressLine1} ${weddingConfig.venue.addressLine2}.`,
+    openGraph: {
+      title: `Wedding of ${weddingConfig.couple.coupleTitle} | ${weddingConfig.dates.weddingDateText}`,
+      description: `You are cordially invited to the wedding celebration of ${weddingConfig.couple.coupleTitle} on ${weddingConfig.dates.weddingDateText} at ${weddingConfig.venue.name}, ${weddingConfig.venue.addressLine1} ${weddingConfig.venue.addressLine2}.`,
+      url: siteUrl,
+      siteName: `Wedding of ${weddingConfig.couple.coupleTitle}`,
+      type: "website",
+      locale: "en_IN",
+      images: [
+        {
+          url: `${siteUrl}/assets/og-image.jpg`,
+          secureUrl: `${siteUrl}/assets/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          type: "image/jpeg",
+          alt: `${weddingConfig.couple.coupleTitle} Wedding Invitation`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Wedding of ${weddingConfig.couple.coupleTitle} | ${weddingConfig.dates.weddingDateText}`,
+      description: `You are cordially invited to the wedding celebration of ${weddingConfig.couple.coupleTitle}.`,
+      images: [`${siteUrl}/assets/og-image.jpg`],
+    },
+  };
+}
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full">
-      <head>
-        <meta
-          property="og:image"
-          content="/assets/og-image.jpg"
-        />
-      </head>
       <body
-        className={`${cormorantGaramond.variable} ${greatVibes.variable} ${lato.variable} min-h-full flex flex-col antialiased`}
+        className={`${cormorantGaramond.variable} ${greatVibes.variable} ${alexBrush.variable} ${lato.variable} min-h-full flex flex-col antialiased`}
       >
         {children}
       </body>

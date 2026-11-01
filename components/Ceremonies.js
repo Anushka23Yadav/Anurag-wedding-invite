@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FloralDivider } from './Icons';
 import { Clock, MapPin, Sparkles, Music, Heart } from 'lucide-react';
+import weddingConfig from '../data/weddingConfig.json';
 
 const EventCard = ({ title, date, time, venue, note, color, bgGradient, image, icon: Icon, accentColor }) => (
   <motion.div 
@@ -24,11 +25,12 @@ const EventCard = ({ title, date, time, venue, note, color, bgGradient, image, i
     </div>
 
     <div className="relative p-6 md:p-8 flex flex-col items-center text-center gap-5">
-      {/* Image */}
-      <div className="relative w-full h-52 rounded-2xl overflow-hidden shadow-lg">
+      {/* Image: 400px height for expansive, rich view */}
+      <div className="relative w-full h-[400px] rounded-2xl overflow-hidden shadow-lg">
         <Image 
           src={image} 
           fill 
+          sizes="(max-width: 768px) 100vw, 550px"
           className="object-cover" 
           alt={title} 
           unoptimized={typeof image === 'string' && image.endsWith('.gif')} 
@@ -124,13 +126,14 @@ const ScheduleItem = ({ time, event, description, index, isLast }) => (
   </motion.div>
 );
 
+const iconMap = {
+  Sparkles,
+  Music
+};
+
 export default function Ceremonies() {
-  const weddingSchedule = [
-    { time: "1:00 PM", event: "Lunch", description: "Festive celebration lunch for family & guests" },
-    { time: "2:00 PM", event: "Baraat Arrival", description: "The groom's grand procession with music & dance" },
-    { time: "3:00 PM", event: "Var Mala", description: "Exchange of garlands — the joyful union begins" },
-    { time: "4:30 PM", event: "Wedding Ceremony", description: "Sacred pheras around the holy fire" },
-  ];
+  const { day1, weddingDay } = weddingConfig.ceremonies;
+  const weddingSchedule = weddingDay.schedule;
 
   return (
     <section className="py-20 px-4 md:px-6 max-w-6xl mx-auto space-y-24">
@@ -144,36 +147,28 @@ export default function Ceremonies() {
           className="space-y-3"
         >
           <div className="inline-block bg-gold/10 px-6 py-2 rounded-full border border-gold/20">
-            <p className="font-heading text-sm uppercase tracking-[0.3em] text-gold font-bold">Pre-Wedding Celebrations</p>
+            <p className="font-heading text-sm uppercase tracking-[0.3em] text-gold font-bold">{day1.title}</p>
           </div>
           <h2 className="font-script text-5xl md:text-6xl text-gold pt-2">Day 1</h2>
-          <p className="font-heading text-xl opacity-60 italic">25th November 2026 — Wednesday</p>
+          <p className="font-heading text-xl opacity-60 italic">{day1.dateText}</p>
         </motion.div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-        <EventCard 
-          title="Haldi & Mehndi"
-          date="25th November 2026"
-          time="1:00 PM Onwards"
-          note="No dress code restrictions — Yellow preferred for the Haldi vibes 💛"
-          venue="Regal Resort, Satbari, Chhatarpur, Delhi"
-          bgGradient="bg-gradient-to-br from-[#FFF9C4] via-[#FFF3B0] to-[#FFE082]"
-          image="/assets/haldi-ceremony.gif"
-          icon={Sparkles}
-          accentColor="bg-amber-500"
-        />
-        <EventCard 
-          title="Sangeet Night"
-          date="25th November 2026"
-          time="8:00 PM Onwards"
-          note="No dress code restrictions — Come dressed to dance! 💃🕺"
-          venue="Regal Resort, Satbari, Chhatarpur, Delhi"
-          bgGradient="bg-gradient-to-br from-[#E8F5E9] via-[#C8E6C9] to-[#A5D6A7]"
-          image="/assets/sangeet-ceremony.gif"
-          icon={Music}
-          accentColor="bg-emerald-600"
-        />
+        {day1.events.map((event) => (
+          <EventCard 
+            key={event.id}
+            title={event.title}
+            date={event.date}
+            time={event.time}
+            note={event.note}
+            venue={event.venue}
+            bgGradient={event.bgGradient}
+            image={event.image}
+            icon={iconMap[event.icon] || Sparkles}
+            accentColor={event.accentColor}
+          />
+        ))}
       </div>
 
       {/* Wedding Day */}
@@ -184,13 +179,29 @@ export default function Ceremonies() {
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
-            className="space-y-3"
+            className="space-y-4"
           >
             <div className="inline-block bg-gold/10 px-6 py-2 rounded-full border border-gold/20">
-              <p className="font-heading text-sm uppercase tracking-[0.3em] text-gold font-bold">The Grand Celebration</p>
+              <p className="font-heading text-sm uppercase tracking-[0.3em] text-gold font-bold">{weddingDay.title}</p>
             </div>
             <h2 className="font-script text-5xl md:text-6xl text-gold pt-2">The Wedding Day</h2>
-            <p className="font-heading text-xl opacity-60 italic">26th November 2026 — Thursday</p>
+            
+            {/* Highlighted Wedding Date Banner */}
+            <div className="pt-2 flex justify-center">
+              <motion.div 
+                initial={{ scale: 0.92, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-3.5 rounded-full bg-gradient-to-r from-[#FFF5DA] via-[#FFEBB0] to-[#FFF5DA] border-2 border-gold shadow-lg shadow-gold/25"
+              >
+                <Sparkles size={20} className="text-gold shrink-0 animate-pulse-soft" />
+                <span className="font-heading text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wider text-forest drop-shadow-sm">
+                  {weddingDay.dateText}
+                </span>
+                <Sparkles size={20} className="text-gold shrink-0 animate-pulse-soft" />
+              </motion.div>
+            </div>
           </motion.div>
         </div>
 
@@ -256,7 +267,11 @@ export default function Ceremonies() {
         >
           <div className="text-center mb-10">
             <h3 className="font-script text-4xl text-gold">Wedding Day Schedule</h3>
-            <p className="font-heading text-sm text-forest/50 mt-2 uppercase tracking-widest">26th November 2026</p>
+            <div className="inline-block mt-2">
+              <span className="font-heading text-sm font-bold text-forest bg-gold/25 px-4 py-1.5 rounded-full border border-gold/50 tracking-widest uppercase shadow-sm">
+                26th November 2026
+              </span>
+            </div>
           </div>
 
           <div className="relative">

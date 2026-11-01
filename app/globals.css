@@ -31,6 +31,10 @@ body {
   font-family: var(--font-vibes);
 }
 
+.font-alex {
+  font-family: var(--font-alex);
+}
+
 .font-heading {
   font-family: var(--font-cormorant);
 }

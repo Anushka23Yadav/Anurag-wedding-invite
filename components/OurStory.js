@@ -5,17 +5,9 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Heart, ImageIcon } from 'lucide-react';
 import { FloralDivider } from './Icons';
+import weddingConfig from '../data/weddingConfig.json';
 
-// Placeholder data - replace image paths with actual couple photos
-const storyPhotos = [
-  { id: 1, image: '/assets/story/1.JPG', caption: "Where our beautiful journey began ❤️" },
-  { id: 2, image: '/assets/story/2.JPG', caption: "Making unforgettable memories together 🌸" },
-  { id: 3, image: '/assets/story/3.JPG', caption: "Laughter, joy & endless smiles 😄" },
-  { id: 4, image: '/assets/story/4.JPG', caption: "Side by side, hand in hand 💑" },
-  { id: 5, image: '/assets/story/5.jpeg', caption: "Celebrating love & togetherness 💛" },
-  { id: 6, image: '/assets/story/6.jpeg', caption: "A love story for a lifetime 💫" },
-  { id: 7, image: '/assets/story/7.jpeg', caption: "And now... beginning our forever 💍" },
-];
+const storyPhotos = weddingConfig.ourStory.photos;
 
 export default function OurStory() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -85,6 +77,7 @@ export default function OurStory() {
                 src={storyPhotos[currentIndex].image}
                 alt=""
                 fill
+                sizes="(max-width: 768px) 100vw, 768px"
                 className="object-cover blur-2xl opacity-40 scale-110 pointer-events-none"
               />
 
@@ -93,6 +86,7 @@ export default function OurStory() {
                 src={storyPhotos[currentIndex].image}
                 alt={storyPhotos[currentIndex].caption}
                 fill
+                sizes="(max-width: 768px) 100vw, 768px"
                 className="object-contain p-2 md:p-4 z-10 drop-shadow-2xl"
                 priority
               />
@@ -102,6 +96,18 @@ export default function OurStory() {
 
               {/* Caption Overlay */}
               <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 text-center z-20">
+                {storyPhotos[currentIndex].tag && (
+                  <motion.div
+                    key={`tag-${currentIndex}`}
+                    initial={{ y: 8, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="inline-block mb-1.5 md:mb-2"
+                  >
+                    <span className="px-3.5 py-1 rounded-full text-[11px] md:text-xs font-heading font-bold uppercase tracking-[0.2em] bg-gold/90 text-forest shadow-md border border-white/30 backdrop-blur-sm">
+                      {storyPhotos[currentIndex].tag}
+                    </span>
+                  </motion.div>
+                )}
                 <motion.p 
                   key={storyPhotos[currentIndex].caption}
                   initial={{ y: 15, opacity: 0 }}

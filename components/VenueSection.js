@@ -3,8 +3,11 @@
 import React from 'react';
 import { MapPin, Navigation, Train } from 'lucide-react';
 import { motion } from 'framer-motion';
+import weddingConfig from '../data/weddingConfig.json';
 
 export default function VenueSection() {
+  const { venue } = weddingConfig;
+
   return (
     <section className="py-20 px-6 bg-cream/50 relative overflow-hidden">
       {/* Decorative background elements */}
@@ -33,7 +36,7 @@ export default function VenueSection() {
           className="relative w-full h-[350px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
         >
           <iframe 
-            src="https://maps.google.com/maps?q=Regal+Resort,+Satbari,+Chhatarpur,+Delhi&cid=12373674793502048414&output=embed" 
+            src={venue.embedIframeUrl} 
             width="100%" 
             height="100%" 
             style={{ border: 0, filter: 'contrast(1.05)' }} 
@@ -60,10 +63,10 @@ export default function VenueSection() {
               <MapPin size={32} />
             </motion.div>
             <div className="space-y-2">
-              <h3 className="font-heading text-2xl md:text-3xl font-bold text-forest">Regal Resort</h3>
+              <h3 className="font-heading text-2xl md:text-3xl font-bold text-forest">{venue.name}</h3>
               <p className="font-heading text-lg text-forest/70 max-w-sm mx-auto">
-                Satbari, Chhatarpur,<br />
-                New Delhi, Delhi
+                {venue.addressLine1}<br />
+                {venue.addressLine2}
               </p>
             </div>
           </div>
@@ -76,14 +79,14 @@ export default function VenueSection() {
             <div className="text-left">
               <p className="font-heading text-xs uppercase tracking-wider font-bold text-amber-800">Nearest Metro Station</p>
               <p className="font-heading text-sm md:text-base font-semibold text-forest">
-                Chhatarpur Metro Station <span className="text-amber-800/80 font-normal">(~4 km, Yellow Line 🟡)</span>
+                {venue.nearestMetro.stationName} <span className="text-amber-800/80 font-normal">({venue.nearestMetro.distance}, {venue.nearestMetro.line})</span>
               </p>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a 
-              href="https://www.google.com/maps?cid=12373674793502048414" 
+              href={venue.googleMapsUrl} 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-8 py-3 bg-forest text-beige rounded-full font-heading font-bold hover:bg-gold hover:text-forest transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"

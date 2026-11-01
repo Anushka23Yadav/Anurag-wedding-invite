@@ -1,18 +1,30 @@
-"use strict";
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WaxSeal } from './Icons';
 
-export default function Envelope({ onOpen }) {
+export default function Envelope({ onOpen, onStartOpen }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showSunburst, setShowSunburst] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  const handleOpen = () => {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleOpen = (e) => {
+    if (isOpen) return;
+
+    // Immediately trigger sound playback synchronously on user gesture
+    if (onStartOpen) {
+      onStartOpen();
+    }
+
     setIsOpen(true);
     setShowSunburst(true);
 
-    // Delay before transitioning to the invitation
+    // Delay before transitioning to the full invitation
     setTimeout(() => {
       onOpen();
     }, 3000);
@@ -36,21 +48,21 @@ export default function Envelope({ onOpen }) {
   }));
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-beige overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-beige overflow-hidden select-none">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none" 
            style={{ backgroundImage: 'radial-gradient(#2D5016 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
 
-      {/* Floating Sparkles in background */}
-      {!isOpen && (
+      {/* Floating Sparkles in background (Only after mount to avoid hydration mismatch) */}
+      {!isOpen && mounted && (
         <>
           {[...Array(8)].map((_, i) => (
             <motion.div
               key={`sparkle-${i}`}
               className="absolute w-2 h-2 rounded-full bg-gold/40"
               style={{
-                left: `${15 + Math.random() * 70}%`,
-                top: `${10 + Math.random() * 80}%`,
+                left: `${15 + (i * 11) % 70}%`,
+                top: `${10 + (i * 13) % 80}%`,
               }}
               animate={{
                 opacity: [0, 1, 0],
@@ -68,23 +80,24 @@ export default function Envelope({ onOpen }) {
       )}
 
       <motion.div 
-        className="relative w-[90vw] max-w-[500px] h-[350px] preserve-3d"
+        className="relative w-[90vw] max-w-[500px] h-[350px] preserve-3d cursor-pointer active:scale-98 transition-transform"
+        onClick={handleOpen}
         initial={{ y: 0, opacity: 1 }}
         animate={isOpen ? { y: 200, opacity: 0, scale: 0.8 } : {}}
         transition={{ duration: 1.5, ease: "easeInOut" }}
       >
-        <div className="text-center mb-8 absolute -top-24 w-full">
+        <div className="text-center mb-8 absolute -top-24 w-full cursor-pointer z-40">
           <motion.p 
-            className="font-script text-2xl text-gold mb-2"
-            animate={{ opacity: [0.4, 1, 0.4] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            className="font-script text-3xl md:text-4xl text-gold mb-2 drop-shadow-sm font-bold"
+            animate={{ opacity: [0.6, 1, 0.6], scale: [0.98, 1.02, 0.98] }}
+            transition={{ duration: 1.8, repeat: Infinity }}
           >
             Tap to Reveal
           </motion.p>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="text-gold/60 text-2xl"
+            className="text-gold text-2xl font-bold"
           >
             ↓
           </motion.div>
@@ -133,14 +146,14 @@ export default function Envelope({ onOpen }) {
                 transition={{ duration: 0.5 }}
                 className="animate-glow rounded-full"
               >
-                <WaxSeal className="w-16 h-16" onClick={handleOpen} />
+                <WaxSeal className="w-20 h-20 md:w-24 md:h-24 shadow-2xl" onClick={handleOpen} />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
 
-        <div className="text-center mt-8 absolute -bottom-16 w-full">
-          <p className="font-script text-xl text-forest italic">To New Beginnings</p>
+        <div className="text-center mt-8 absolute -bottom-16 w-full pointer-events-none">
+          <p className="font-script text-2xl text-forest italic">To New Beginnings</p>
         </div>
       </motion.div>
 

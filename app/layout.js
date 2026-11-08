@@ -81,11 +81,11 @@ export async function generateMetadata() {
       locale: "en_IN",
       images: [
         {
-          url: `${siteUrl}/assets/og-image-2.png`,
-          secureUrl: `${siteUrl}/assets/og-image-2.png`,
-          width: 1774,
-          height: 887,
-          type: "image/png",
+          url: `${siteUrl}/assets/og-image-2.jpg`,
+          secureUrl: `${siteUrl}/assets/og-image-2.jpg`,
+          width: 1200,
+          height: 600,
+          type: "image/jpeg",
           alt: `${coupleNames} Wedding Invitation`,
         },
       ],
@@ -94,7 +94,7 @@ export async function generateMetadata() {
       card: "summary_large_image",
       title: `Wedding of ${coupleNames} | ${weddingDate}`,
       description: `You are cordially invited to the wedding celebration of ${coupleNames}.`,
-      images: [`${siteUrl}/assets/og-image-2.png`],
+      images: [`${siteUrl}/assets/og-image-2.jpg`],
     },
   };
 }

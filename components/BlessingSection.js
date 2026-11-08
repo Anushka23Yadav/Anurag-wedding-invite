@@ -157,18 +157,18 @@ export default function BlessingSection() {
               <div className="h-[1px] w-16 bg-gold/30 mx-auto" />
 
               <div className="space-y-1">
-                <p className="font-heading text-sm sm:text-base md:text-lg uppercase tracking-[0.2em] text-[#6D4807] !font-black">Grandson of</p>
-                <p className="font-heading font-semibold text-lg md:text-xl text-forest/90">
-                  {couple.groom.grandparents}
+                <p className="font-heading text-sm sm:text-base md:text-lg uppercase tracking-[0.2em] text-[#6D4807] !font-black">Son of</p>
+                <p className="font-heading font-bold text-xl uppercase tracking-tighter text-forest">
+                  {couple.groom.parents}
                 </p>
               </div>
 
               <div className="h-[1px] w-12 bg-gold/20 mx-auto" />
 
               <div className="space-y-1">
-                <p className="font-heading text-sm sm:text-base md:text-lg uppercase tracking-[0.2em] text-[#6D4807] !font-black">Son of</p>
-                <p className="font-heading font-bold text-xl uppercase tracking-tighter text-forest">
-                  {couple.groom.parents}
+                <p className="font-heading text-sm sm:text-base md:text-lg uppercase tracking-[0.2em] text-[#6D4807] !font-black">Grandson of</p>
+                <p className="font-heading font-semibold text-lg md:text-xl text-forest/90">
+                  {couple.groom.grandparents}
                 </p>
               </div>
             </motion.div>

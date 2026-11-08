@@ -56,7 +56,7 @@ const EventCard = ({ title, date, time, venue, note, color, bgGradient, image, i
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3 }}
-        className="font-script text-3xl min-[380px]:text-4xl sm:text-5xl md:text-6xl text-forest font-bold leading-[1.45] py-2"
+        className="font-script text-3xl min-[380px]:text-4xl sm:text-5xl md:text-6xl text-forest font-bold leading-[2.1] sm:leading-normal py-2"
       >
         {title}
       </motion.h2>
@@ -185,7 +185,7 @@ export default function Ceremonies() {
             <div className="inline-block bg-gold/15 px-7 py-2.5 rounded-full border border-gold/30">
               <p className="font-heading text-base sm:text-lg uppercase tracking-[0.3em] text-[#8C651A] font-extrabold">{weddingDay.title}</p>
             </div>
-            <h2 className="font-script text-6xl md:text-7xl text-[#8C651A] font-bold pt-2">The Wedding Day</h2>
+            <h2 className="font-script text-5xl sm:text-6xl md:text-7xl text-[#8C651A] font-bold pt-2 leading-[1.8] sm:leading-normal">The Wedding Day</h2>
             
             {/* Highlighted Wedding Date Banner */}
             <div className="pt-2 flex justify-center">
@@ -271,7 +271,7 @@ export default function Ceremonies() {
             className="max-w-lg mx-auto"
           >
             <div className="text-center mb-10">
-              <h3 className="font-script text-5xl md:text-6xl text-forest font-bold">Wedding Day Schedule</h3>
+              <h3 className="font-script text-4xl sm:text-5xl md:text-6xl text-forest font-bold leading-[2] sm:leading-normal py-2">Wedding Day Schedule</h3>
               <div className="inline-block mt-3">
                 <span className="font-heading text-base md:text-lg font-extrabold text-forest bg-gold/30 px-6 py-2 rounded-full border border-gold/50 tracking-widest uppercase shadow-sm">
                   26th November 2026
